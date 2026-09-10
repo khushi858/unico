@@ -1,0 +1,1795 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Unico Motors | Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --orange: #f47b00;
+        --orange2: #d96500;
+        --ink: #11151a;
+        --muted: #66707b;
+        --line: #e9ecef;
+        --soft: #f5f6f7;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, Arial, sans-serif;
+        color: var(--ink);
+        background: #fff;
+        line-height: 1.75;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      .topbar {
+        height: 42px;
+        background: #0b0d0f;
+        color: #dce2e7;
+        font-size: 13px;
+      }
+      .topbar .inner {
+        max-width: 1240px;
+        margin: auto;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 24px;
+      }
+      .topbar .links {
+        display: flex;
+        gap: 22px;
+      }
+      .topbar a:hover {
+        color: #fff;
+      }
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(17, 21, 26, 0.08);
+      }
+      .nav-shell {
+        max-width: 1240px;
+        height: 82px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 270px minmax(0, 1fr) 205px;
+        align-items: center;
+        column-gap: 24px;
+        padding: 0 24px;
+      }
+      .site-logo {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+      .site-logo img {
+        width: 255px;
+        max-height: 65px;
+        object-fit: contain;
+        object-position: left center;
+      }
+      .nav-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+        white-space: nowrap;
+      }
+      .nav-links a {
+        font-weight: 700;
+        font-size: 14px;
+        position: relative;
+        padding: 8px 0;
+      }
+      .nav-links a:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 1px;
+        width: 0;
+        height: 2px;
+        background: var(--orange);
+        transition: 0.3s;
+      }
+      .nav-links a:hover:after,
+      .nav-links a.active:after {
+        width: 100%;
+      }
+      .nav-button {
+        height: 48px;
+        width: 205px;
+        justify-self: end;
+        background: var(--orange);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        font-size: 12px;
+        transition: 0.25s;
+        box-shadow: 0 10px 28px rgba(244, 123, 0, 0.2);
+      }
+      .nav-button:hover {
+        background: #111;
+        color: #fff;
+        transform: translateY(-2px);
+      }
+      .mobile-menu {
+        display: none;
+      }
+      .hero {
+        min-height: 470px;
+        background:
+          linear-gradient(
+            90deg,
+            rgba(5, 10, 15, 0.94) 0%,
+            rgba(5, 10, 15, 0.78) 52%,
+            rgba(5, 10, 15, 0.45) 100%
+          ),
+          url("article-workshop.jpg") center/cover;
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero:after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        height: 5px;
+        background: var(--orange);
+      }
+      .hero-inner {
+        max-width: 1240px;
+        width: 100%;
+        margin: auto;
+        padding: 88px 24px 72px;
+        position: relative;
+        z-index: 2;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        color: #ffb15f;
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        margin-bottom: 20px;
+      }
+      .eyebrow:before {
+        content: "";
+        width: 38px;
+        height: 2px;
+        background: var(--orange);
+      }
+      .hero h1 {
+        max-width: 1000px;
+        margin: 0;
+        color: #fff;
+        font-family: "Barlow Condensed", Arial, sans-serif;
+        font-size: clamp(48px, 6vw, 86px);
+        line-height: 0.98;
+        text-transform: uppercase;
+        letter-spacing: -0.025em;
+      }
+      .hero-meta {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        color: #d8e0e6;
+        margin-top: 24px;
+        font-size: 14px;
+      }
+      .hero-meta span {
+        display: inline-flex;
+        gap: 7px;
+        align-items: center;
+      }
+      .hero-meta i {
+        color: #ff9a33;
+      }
+      .page {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 88px 24px 100px;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: 300px minmax(0, 1fr);
+        gap: 54px;
+        align-items: start;
+      }
+      .sidebar {
+        position: sticky;
+        top: 104px;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+      .side-card {
+        background: #f6f6f6;
+        padding: 26px;
+      }
+      .side-title {
+        font-family: "Barlow Condensed", Arial, sans-serif;
+        text-transform: uppercase;
+        font-size: 22px;
+        letter-spacing: 0.02em;
+        margin: 0 0 20px;
+      }
+      .search-form {
+        display: flex;
+        background: #fff;
+        border: 1px solid #ececec;
+      }
+      .search-form input {
+        min-width: 0;
+        flex: 1;
+        border: 0;
+        padding: 14px 13px;
+        font: inherit;
+        outline: none;
+      }
+      .search-form button {
+        width: 52px;
+        border: 0;
+        background: var(--orange);
+        color: #fff;
+        cursor: pointer;
+        font-size: 17px;
+      }
+      .cat-list {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .cat-list a {
+        background: #fff;
+        padding: 12px 13px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        border: 1px solid transparent;
+        transition: 0.2s;
+      }
+      .cat-list a:hover,
+      .cat-list a.active {
+        border-color: #ffd1a5;
+        color: var(--orange);
+        transform: translateX(3px);
+      }
+      .recent-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .recent-item {
+        padding-bottom: 15px;
+        border-bottom: 1px solid #ddd;
+      }
+      .recent-item strong {
+        font-family: "Barlow Condensed";
+        font-size: 17px;
+        line-height: 1.15;
+        display: block;
+      }
+      .recent-item small {
+        color: #8a9198;
+        font-size: 12px;
+      }
+      .article {
+        min-width: 0;
+      }
+      .article-kicker {
+        font-size: 13px;
+        font-weight: 900;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--orange);
+        margin-bottom: 12px;
+      }
+      .article h2 {
+        font-family: "Barlow Condensed", Arial, sans-serif;
+        text-transform: uppercase;
+        font-size: 38px;
+        line-height: 1.05;
+        margin: 38px 0 15px;
+      }
+      .article p {
+        font-size: 17px;
+        color: #525b65;
+        margin: 0 0 18px;
+      }
+      .article .lead {
+        font-size: 20px;
+        line-height: 1.75;
+        color: #303841;
+      }
+      .article-image {
+        width: 100%;
+        height: 420px;
+        object-fit: cover;
+        margin: 32px 0 42px;
+      }
+      .filter-grid {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 18px;
+        margin: 24px 0;
+      }
+      .filter-row {
+        display: contents;
+      }
+      .filter-row b {
+        font-size: 16px;
+        padding-left: 22px;
+        position: relative;
+      }
+      .filter-row b:before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--orange);
+        position: absolute;
+        left: 0;
+        top: 11px;
+      }
+      .quote {
+        margin: 38px 0;
+        padding: 28px 30px;
+        background: #f4f7fa;
+        border-left: 4px solid var(--orange);
+        font-size: 19px;
+        font-weight: 700;
+        position: relative;
+      }
+      .quote p {
+        margin: 0;
+        padding-left: 22px;
+        color: #20262d;
+      }
+      .tags {
+        border-top: 1px solid #e8e8e8;
+        border-bottom: 1px solid #e8e8e8;
+        padding: 18px 0;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 38px;
+      }
+      .tag {
+        background: #f1f2f3;
+        padding: 6px 12px;
+        font-size: 13px;
+        color: #59616a;
+      }
+      .article-cta {
+        margin-top: 42px;
+        background: #101820;
+        color: #fff;
+        padding: 38px;
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        align-items: center;
+      }
+      .article-cta h3 {
+        font-family: "Barlow Condensed";
+        font-size: 34px;
+        text-transform: uppercase;
+        margin: 0 0 5px;
+      }
+      .article-cta p {
+        color: #c6ced5;
+        margin: 0;
+        font-size: 14px;
+      }
+      .cta-btn {
+        background: var(--orange);
+        color: #fff;
+        padding: 14px 22px;
+        font-weight: 900;
+        text-transform: uppercase;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      .related {
+        margin-top: 60px;
+      }
+      .related h3 {
+        font-family: "Barlow Condensed";
+        font-size: 32px;
+        text-transform: uppercase;
+        margin-bottom: 22px;
+      }
+      .related-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+      }
+      .related-card {
+        border: 1px solid #e6e8ea;
+        padding: 20px;
+        transition: 0.25s;
+      }
+      .related-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
+      }
+      .related-card small {
+        color: var(--orange);
+        font-weight: 800;
+      }
+      .related-card strong {
+        display: block;
+        font-family: "Barlow Condensed";
+        font-size: 22px;
+        line-height: 1.15;
+        margin: 7px 0 13px;
+      }
+      .related-card span {
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+      .sign-list {
+        padding: 0;
+        margin: 10px 0 30px;
+        list-style: none;
+        display: grid;
+        gap: 10px;
+      }
+      .sign-list li {
+        font-size: 17px;
+        color: #555e67;
+        position: relative;
+        padding-left: 28px;
+      }
+      .sign-list li:before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #111;
+        position: absolute;
+        left: 3px;
+        top: 11px;
+        box-shadow: 0 0 0 4px #edf0f2;
+      }
+      .story-nav {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        margin-top: 50px;
+        border-top: 1px solid #e7e9eb;
+        padding-top: 22px;
+      }
+      .nav-story {
+        font-family: "Barlow Condensed";
+        font-size: 20px;
+        text-transform: uppercase;
+        color: #151b21;
+      }
+      .nav-story:hover {
+        color: var(--orange);
+      }
+      footer {
+        background: #0b1015;
+        color: #c9d0d6;
+        padding: 55px 24px 25px;
+      }
+      .footer-inner {
+        max-width: 1240px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1.3fr 1fr 1fr;
+        gap: 55px;
+      }
+      .footer-logo {
+        width: 230px;
+        margin-bottom: 16px;
+      }
+      footer h4 {
+        color: #fff;
+        font-family: "Barlow Condensed";
+        font-size: 22px;
+        text-transform: uppercase;
+        margin: 0 0 16px;
+      }
+      footer p,
+      footer a {
+        font-size: 14px;
+        color: #aeb7bf;
+        line-height: 1.7;
+      }
+      footer a:hover {
+        color: #ff9a33;
+      }
+      .footer-bottom {
+        max-width: 1240px;
+        margin: 30px auto 0;
+        padding-top: 18px;
+        border-top: 1px solid #283039;
+        font-size: 12px;
+        color: #87919a;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(25px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.show {
+        opacity: 1;
+        transform: none;
+      }
+      @media (max-width: 900px) {
+        .nav-shell {
+          grid-template-columns: 1fr auto;
+          height: 74px;
+        }
+        .site-logo img {
+          width: 215px;
+        }
+        .nav-links {
+          display: none;
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 74px;
+          background: #fff;
+          border-bottom: 1px solid #ddd;
+          flex-direction: column;
+          padding: 18px;
+          gap: 4px;
+        }
+        .nav-links.open {
+          display: flex;
+        }
+        .nav-button {
+          display: none !important;
+        }
+        .mobile-menu {
+          display: block;
+          border: 0;
+          background: #111;
+          color: #fff;
+          width: 44px;
+          height: 44px;
+          font-size: 20px;
+          justify-self: end;
+        }
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          position: static;
+          order: 2;
+        }
+        .article {
+          order: 1;
+        }
+        .footer-inner {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 600px) {
+        .topbar {
+          display: none;
+        }
+        .hero {
+          min-height: 420px;
+        }
+        .hero-inner {
+          padding: 70px 20px 54px;
+        }
+        .hero h1 {
+          font-size: 52px;
+        }
+        .page {
+          padding: 55px 18px 70px;
+        }
+        .layout {
+          gap: 35px;
+        }
+        .filter-grid {
+          grid-template-columns: 1fr;
+          gap: 7px;
+        }
+        .filter-row {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 3px;
+          margin-bottom: 12px;
+        }
+        .article h2 {
+          font-size: 32px;
+        }
+        .article p {
+          font-size: 16px;
+        }
+        .article-image {
+          height: 260px;
+        }
+        .article-cta {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .related-grid {
+          grid-template-columns: 1fr;
+        }
+        .footer-inner {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ===== ENHANCED BLOG EXPERIENCE ===== */
+      .scroll-progress {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 3px;
+        background: var(--orange);
+        z-index: 1000;
+        transition: width 0.08s linear;
+      }
+
+      .blog-hero {
+        min-height: 430px;
+        background:
+          linear-gradient(90deg, rgba(5, 10, 15, 0.88), rgba(5, 10, 15, 0.48)),
+          url("https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=1800&q=88")
+            center/cover;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .blog-hero:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            120deg,
+            transparent 0 68%,
+            rgba(244, 123, 0, 0.12) 68% 69%,
+            transparent 69%
+          ),
+          linear-gradient(
+            90deg,
+            transparent 0 10%,
+            rgba(255, 255, 255, 0.08) 10% 10.1%,
+            transparent 10.1%
+          );
+        pointer-events: none;
+      }
+      .blog-hero .hero-inner {
+        position: relative;
+        z-index: 2;
+        padding-top: 90px;
+      }
+      .blog-hero .eyebrow {
+        transform: translateY(14px);
+        opacity: 0;
+        animation: heroIn 0.7s 0.1s ease forwards;
+      }
+      .blog-hero h1 {
+        text-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        transform: translateY(22px);
+        opacity: 0;
+        animation: heroIn 0.8s 0.2s ease forwards;
+      }
+      .blog-hero p {
+        transform: translateY(18px);
+        opacity: 0;
+        animation: heroIn 0.8s 0.35s ease forwards;
+      }
+      .blog-hero:after {
+        content: "SCROLL TO EXPLORE";
+        position: absolute;
+        right: 24px;
+        bottom: 28px;
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 9px;
+        font-weight: 900;
+        letter-spacing: 0.2em;
+        writing-mode: vertical-rl;
+        animation: scrollHint 1.8s ease-in-out infinite;
+      }
+
+      .blog-wrap {
+        max-width: 1240px;
+        margin: auto;
+        padding: 82px 24px 110px;
+      }
+      .blog-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 40px;
+        margin-bottom: 24px;
+      }
+      .blog-top h2 {
+        max-width: 650px;
+        font-size: 58px;
+        letter-spacing: -0.02em;
+      }
+      .blog-top p {
+        max-width: 420px;
+        margin: 0;
+        line-height: 1.7;
+      }
+
+      .filters {
+        border-top: 1px solid #e7e9eb;
+        border-bottom: 1px solid #e7e9eb;
+        padding: 15px 0;
+        margin: 0 0 38px;
+        gap: 6px;
+      }
+      .filter-btn {
+        position: relative;
+        border: 0;
+        background: transparent;
+        padding: 10px 13px;
+        color: #68727a;
+      }
+      .filter-btn:after {
+        content: "";
+        position: absolute;
+        left: 13px;
+        right: 13px;
+        bottom: 3px;
+        height: 2px;
+        background: var(--orange);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.25s ease;
+      }
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: #111;
+        color: #fff;
+        border-color: #111;
+      }
+      .filter-btn.active:after {
+        transform: scaleX(1);
+      }
+
+      .blog-content {
+        gap: 50px;
+      }
+      .blog-grid {
+        gap: 28px;
+      }
+      .blog-card {
+        position: relative;
+        border: 1px solid #e3e6e8;
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+        transform: translateY(0);
+        transition:
+          transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+          box-shadow 0.5s ease,
+          border-color 0.3s ease;
+      }
+      .blog-card:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 3px;
+        background: var(--orange);
+        z-index: 3;
+        transition: width 0.45s ease;
+      }
+      .blog-card:hover:before {
+        width: 100%;
+      }
+      .blog-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 24px 60px rgba(17, 21, 26, 0.1);
+        border-color: #d9dddf;
+      }
+      .card-image {
+        height: 245px;
+        position: relative;
+        overflow: hidden;
+      }
+      .card-image:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          transparent 55%,
+          rgba(0, 0, 0, 0.23)
+        );
+        pointer-events: none;
+        opacity: 0.6;
+        transition: opacity 0.4s ease;
+      }
+      .blog-card:hover .card-image:after {
+        opacity: 0.2;
+      }
+      .card-image.image-fallback {
+        background: linear-gradient(135deg, #eef1f2, #d9dee1);
+      }
+      .card-image img {
+        transform: scale(1.01);
+        filter: saturate(0.93);
+        transition:
+          transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+          filter 0.5s ease;
+      }
+      .blog-card:hover .card-image img {
+        transform: scale(1.09);
+        filter: saturate(1.06);
+      }
+      .card-body {
+        padding: 26px 25px 27px;
+      }
+      .card-meta {
+        font-size: 10px;
+      }
+      .card-body h2 {
+        font-size: 31px;
+        transition: color 0.25s ease;
+      }
+      .blog-card:hover .card-body h2 {
+        color: var(--orange);
+      }
+      .card-body p {
+        line-height: 1.7;
+      }
+      .read-more {
+        position: relative;
+      }
+      .read-more span {
+        display: inline-block;
+        transition: transform 0.3s ease;
+      }
+      .blog-card:hover .read-more span {
+        transform: translate(4px, -3px);
+      }
+
+      /* Scroll reveal: cards enter with a slight directional movement */
+      .blog-card.reveal:nth-child(3n + 1) {
+        transition-delay: 0.02s;
+      }
+      .blog-card.reveal:nth-child(3n + 2) {
+        transition-delay: 0.1s;
+      }
+      .blog-card.reveal:nth-child(3n) {
+        transition-delay: 0.18s;
+      }
+
+      /* Sidebar becomes visually active while scrolling */
+      .blog-sidebar .side-card {
+        border: 1px solid transparent;
+        transition:
+          border-color 0.3s ease,
+          box-shadow 0.3s ease,
+          transform 0.3s ease;
+      }
+      .blog-sidebar .side-card:hover {
+        border-color: #e3e6e8;
+        box-shadow: 0 14px 35px rgba(17, 21, 26, 0.06);
+        transform: translateY(-3px);
+      }
+
+      @keyframes heroIn {
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @keyframes scrollHint {
+        0%,
+        100% {
+          transform: translateY(0);
+          opacity: 0.55;
+        }
+        50% {
+          transform: translateY(7px);
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .blog-top {
+          display: block;
+        }
+        .blog-top p {
+          margin-top: 12px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *:before,
+        *:after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      .blog-hero {
+        min-height: 430px;
+        background:
+          linear-gradient(90deg, rgba(5, 10, 15, 0.94), rgba(5, 10, 15, 0.62)),
+          url("article-workshop.jpg") center/cover;
+        display: flex;
+        align-items: center;
+      }
+      .blog-hero .hero-inner {
+        padding-top: 90px;
+      }
+      .blog-hero h1 {
+        font-family: "Barlow Condensed";
+        font-size: clamp(68px, 9vw, 130px);
+        line-height: 0.85;
+        color: #fff;
+        text-transform: uppercase;
+        margin: 0;
+        max-width: 900px;
+      }
+      .blog-hero p {
+        color: #dce3e8;
+        max-width: 620px;
+        font-size: 17px;
+        margin: 24px 0 0;
+      }
+      .blog-wrap {
+        max-width: 1240px;
+        margin: auto;
+        padding: 72px 24px 100px;
+      }
+      .blog-top h2 {
+        font-family: "Barlow Condensed";
+        font-size: 54px;
+        line-height: 1;
+        text-transform: uppercase;
+        margin: 0;
+      }
+      .blog-top p {
+        color: #68717a;
+        margin: 8px 0 0;
+      }
+      .filters {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin: 32px 0 35px;
+      }
+      .filter-btn {
+        border: 1px solid #ddd;
+        background: #fff;
+        padding: 10px 14px;
+        font-size: 12px;
+        font-weight: 900;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: #111;
+        color: #fff;
+        border-color: #111;
+      }
+      .blog-content {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 300px;
+        gap: 45px;
+        align-items: start;
+      }
+      .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 25px;
+      }
+      .blog-card {
+        border: 1px solid #e4e7ea;
+        background: #fff;
+        transition: 0.3s;
+        overflow: hidden;
+      }
+      .blog-card:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 22px 55px rgba(0, 0, 0, 0.1);
+      }
+      .blog-card.hidden {
+        display: none;
+      }
+      .card-image {
+        height: 230px;
+        overflow: hidden;
+        background: #dfe4e7;
+      }
+      .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.55s;
+      }
+      .blog-card:hover .card-image img {
+        transform: scale(1.05);
+      }
+      .card-body {
+        padding: 24px;
+      }
+      .card-meta {
+        font-size: 11px;
+        color: #9299a0;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 800;
+        display: flex;
+        gap: 8px;
+      }
+      .card-body h2 {
+        font-family: "Barlow Condensed";
+        font-size: 30px;
+        line-height: 1.05;
+        text-transform: uppercase;
+        margin: 12px 0;
+      }
+      .card-body p {
+        font-size: 14px;
+        color: #69727a;
+        margin: 0 0 18px;
+      }
+      .read-more {
+        display: inline-flex;
+        gap: 10px;
+        align-items: center;
+        color: var(--orange);
+        font-weight: 900;
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+      .read-more span {
+        font-size: 18px;
+      }
+      .no-results {
+        display: none;
+        padding: 35px;
+        border: 1px dashed #ccc;
+        color: #6b737b;
+        grid-column: 1/-1;
+      }
+      .blog-sidebar {
+        position: sticky;
+        top: 104px;
+      }
+      .blog-sidebar .side-card {
+        margin-bottom: 20px;
+      }
+      @media (max-width: 900px) {
+        .blog-content {
+          grid-template-columns: 1fr;
+        }
+        .blog-sidebar {
+          position: static;
+          order: 2;
+        }
+      }
+      @media (max-width: 650px) {
+        .blog-grid {
+          grid-template-columns: 1fr;
+        }
+        .blog-top h2 {
+          font-size: 45px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+    <div class="topbar">
+      <div class="inner">
+        <div class="links">
+          <a href="index.html">Home</a><a href="about.html">About us</a
+          ><a href="contact.html">Contact us</a>
+        </div>
+        <div class="links">
+          <a href="https://www.facebook.com/" target="_blank">Facebook</a
+          ><a href="https://www.instagram.com/" target="_blank">Instagram</a
+          ><a href="https://www.youtube.com/" target="_blank">YouTube</a>
+        </div>
+      </div>
+    </div>
+    <header class="navbar">
+      <div class="nav-shell">
+        <a class="site-logo" href="index.html"
+          ><img
+            src="data:image/png;base64,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"
+            alt="Unico Motors" /></a
+        ><button class="mobile-menu" id="mobileMenu">☰</button>
+        <nav class="nav-links" id="navLinks">
+          <a href="index.html">Home</a><a href="services.html">Services</a
+          ><a href="about.html">About Us</a
+          ><a class="active" href="blog.html">Blog</a
+          ><a href="contact.html">Contact Us</a>
+        </nav>
+        <a class="nav-button" href="contact.html">Book Appointment</a>
+      </div>
+    </header>
+    <section class="blog-hero">
+      <div class="hero-inner">
+        <div class="eyebrow">Unico Motors Knowledge Hub</div>
+        <h1>Drive. Learn.<br />Drive Better.</h1>
+        <p>
+          Automotive maintenance, repair and workshop insights — presented in a
+          clean, practical format for every car owner.
+        </p>
+      </div>
+    </section>
+    <main class="blog-wrap">
+      <div class="blog-top">
+        <h2>Latest Automotive Insights</h2>
+        <p>
+          Search the articles or filter by the same category structure used on
+          the live Unico Motors site.
+        </p>
+      </div>
+      <div class="filters">
+        <button class="filter-btn active" data-filter="All">All</button
+        ><button class="filter-btn" data-filter="Auto Car">Auto Car</button
+        ><button class="filter-btn" data-filter="Battery Check">
+          Battery Check</button
+        ><button class="filter-btn" data-filter="Car Denting Repair">
+          Car Denting Repair</button
+        ><button class="filter-btn" data-filter="Engine Repair">
+          Engine Repair</button
+        ><button class="filter-btn" data-filter="Exhaust System Repair">
+          Exhaust System Repair</button
+        ><button class="filter-btn" data-filter="Hydro Dripping">
+          Hydro Dripping</button
+        ><button class="filter-btn" data-filter="Workshop">Workshop</button>
+      </div>
+      <div class="blog-content">
+        <section>
+          <div class="blog-grid">
+            <article
+              class="blog-card reveal"
+              data-title="how to extend the life of your car with preventive maintenance"
+              data-category="Workshop"
+              data-tags="car services repair"
+            >
+              <div class="card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1200&q=88"
+                  alt="Preventive car maintenance in a professional workshop"
+                  loading="lazy"
+                />
+              </div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span>21 March 2025</span><span>•</span><span>admin</span>
+                </div>
+                <h2>
+                  How to Extend the Life of Your Car with Preventive Maintenance
+                </h2>
+                <p>
+                  Regular preventive maintenance and timely vehicle care help
+                  identify issues early and keep your car reliable, efficient,
+                  and safe.
+                </p>
+                <a
+                  class="read-more"
+                  href="why-regular-car-maintenance-is-crucial-for-your-vehicles-longevity.html"
+                  >Read More <span>↗</span></a
+                >
+              </div>
+            </article>
+            <article
+              class="blog-card reveal"
+              data-title="what’s the best time to schedule your car’s tune-up?"
+              data-category="Car Denting Repair"
+              data-tags="denting"
+            >
+              <div class="card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1200&q=88"
+                  alt="Car tune-up and scheduled vehicle service"
+                  loading="lazy"
+                />
+              </div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span>21 March 2025</span><span>•</span><span>admin</span>
+                </div>
+                <h2>What’s the Best Time to Schedule Your Car’s Tune-Up?</h2>
+                <p>
+                  Regular preventive maintenance and timely vehicle care help
+                  identify issues early and keep your car reliable, efficient,
+                  and safe.
+                </p>
+                <a
+                  class="read-more"
+                  href="whats-the-best-time-to-schedule-your-cars-tune-up.html"
+                  >Read More <span>↗</span></a
+                >
+              </div>
+            </article>
+            <article
+              class="blog-card reveal"
+              data-title="top 10 car repairs that can save you money in the long run"
+              data-category="Battery Check"
+              data-tags="battery check"
+            >
+              <div class="card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=88"
+                  alt="Automotive repair and vehicle maintenance"
+                  loading="lazy"
+                />
+              </div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span>21 March 2025</span><span>•</span><span>admin</span>
+                </div>
+                <h2>
+                  Top 10 Car Repairs That Can Save You Money in the Long Run
+                </h2>
+                <p>
+                  Regular preventive maintenance and timely vehicle care help
+                  identify issues early and keep your car reliable, efficient,
+                  and safe.
+                </p>
+                <a
+                  class="read-more"
+                  href="top-10-car-repairs-that-can-save-you-money-in-the-long-run.html"
+                  >Read More <span>↗</span></a
+                >
+              </div>
+            </article>
+            <article
+              class="blog-card reveal"
+              data-title="car service myths debunked: what you really need to know"
+              data-category="Hydro Dripping"
+              data-tags="hydro"
+            >
+              <div class="card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?auto=format&fit=crop&w=1200&q=88"
+                  alt="Professional mechanic inspecting a vehicle"
+                  loading="lazy"
+                />
+              </div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span>21 March 2025</span><span>•</span><span>admin</span>
+                </div>
+                <h2>
+                  Car service myths debunked: What you really need to know
+                </h2>
+                <p>
+                  Regular preventive maintenance and timely vehicle care help
+                  identify issues early and keep your car reliable, efficient,
+                  and safe.
+                </p>
+                <a
+                  class="read-more"
+                  href="car-service-myths-debunked-what-you-really-need-to-know.html"
+                  >Read More <span>↗</span></a
+                >
+              </div>
+            </article>
+            <article
+              class="blog-card reveal"
+              data-title="how to save money on auto repairs without compromising quality"
+              data-category="Engine Repair"
+              data-tags="engine"
+            >
+              <div class="card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=1200&q=88"
+                  alt="Car repair service and workshop diagnostics"
+                  loading="lazy"
+                />
+              </div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span>21 March 2025</span><span>•</span><span>admin</span>
+                </div>
+                <h2>
+                  How to save money on auto repairs without compromising quality
+                </h2>
+                <p>
+                  Regular preventive maintenance and timely vehicle care help
+                  identify issues early and keep your car reliable, efficient,
+                  and safe.
+                </p>
+                <a
+                  class="read-more"
+                  href="how-to-save-money-on-auto-repairs-without-compromising-quality.html"
+                  >Read More <span>↗</span></a
+                >
+              </div>
+            </article>
+            <article
+              class="blog-card reveal"
+              data-title="why regular oil changes are crucial for your engine’s health"
+              data-category="Auto Car"
+              data-tags="car"
+            >
+              <div class="card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=88"
+                  alt="Engine oil change and engine maintenance"
+                  loading="lazy"
+                />
+              </div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span>21 March 2025</span><span>•</span><span>admin</span>
+                </div>
+                <h2>
+                  Why regular oil changes are crucial for your engine’s health
+                </h2>
+                <p>
+                  Regular preventive maintenance and timely vehicle care help
+                  identify issues early and keep your car reliable, efficient,
+                  and safe.
+                </p>
+                <a
+                  class="read-more"
+                  href="why-regular-oil-changes-are-crucial-for-your-engines-health.html"
+                  >Read More <span>↗</span></a
+                >
+              </div>
+            </article>
+            <article
+              class="blog-card reveal"
+              data-title="job opportunities for car detailing"
+              data-category="Engine Repair"
+              data-tags="engine repair"
+            >
+              <div class="card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=1200&q=88"
+                  alt="Professional car detailing"
+                  loading="lazy"
+                />
+              </div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span>27 February 2025</span><span>•</span><span>admin</span>
+                </div>
+                <h2>Job opportunities for car detailing</h2>
+                <p>
+                  Regular preventive maintenance and timely vehicle care help
+                  identify issues early and keep your car reliable, efficient,
+                  and safe.
+                </p>
+                <a
+                  class="read-more"
+                  href="job-opportunities-for-car-detailing.html"
+                  >Read More <span>↗</span></a
+                >
+              </div>
+            </article>
+            <article
+              class="blog-card reveal"
+              data-title="the worlds first supercar"
+              data-category="Exhaust System Repair"
+              data-tags="exhaust"
+            >
+              <div class="card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=88"
+                  alt="High-performance supercar"
+                  loading="lazy"
+                />
+              </div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span>27 February 2025</span><span>•</span><span>admin</span>
+                </div>
+                <h2>The worlds first supercar</h2>
+                <p>
+                  Regular preventive maintenance and timely vehicle care help
+                  identify issues early and keep your car reliable, efficient,
+                  and safe.
+                </p>
+                <a class="read-more" href="the-worlds-first-supercar.html"
+                  >Read More <span>↗</span></a
+                >
+              </div>
+            </article>
+            <article
+              class="blog-card reveal"
+              data-title="our professional mechanics"
+              data-category="Auto Car"
+              data-tags="auto car"
+            >
+              <div class="card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=1200&q=88"
+                  alt="Professional automotive mechanic at work"
+                  loading="lazy"
+                />
+              </div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span>27 February 2025</span><span>•</span><span>admin</span>
+                </div>
+                <h2>Our Professional Mechanics</h2>
+                <p>
+                  Regular preventive maintenance and timely vehicle care help
+                  identify issues early and keep your car reliable, efficient,
+                  and safe.
+                </p>
+                <a class="read-more" href="our-professional-mechanics.html"
+                  >Read More <span>↗</span></a
+                >
+              </div>
+            </article>
+            <article
+              class="blog-card reveal"
+              data-title="top signs your car needs immediate attention from a mechanic"
+              data-category="Workshop"
+              data-tags="consultant"
+            >
+              <div class="card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&w=1200&q=88"
+                  alt="Vehicle inspection and mechanic diagnostics"
+                  loading="lazy"
+                />
+              </div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span>21 January 2025</span><span>•</span><span>admin</span>
+                </div>
+                <h2>
+                  Top Signs Your Car Needs Immediate Attention from a Mechanic
+                </h2>
+                <p>
+                  Regular preventive maintenance and timely vehicle care help
+                  identify issues early and keep your car reliable, efficient,
+                  and safe.
+                </p>
+                <a
+                  class="read-more"
+                  href="top-signs-your-car-needs-immediate-attention-from-a-mechanic.html"
+                  >Read More <span>↗</span></a
+                >
+              </div>
+            </article>
+            <article
+              class="blog-card reveal"
+              data-title="the ultimate guide to car maintenance: keeping your vehicle in top shape"
+              data-category="Workshop"
+              data-tags="consultant"
+            >
+              <div class="card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=1200&q=88"
+                  alt="Car maintenance and workshop service"
+                  loading="lazy"
+                />
+              </div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span>21 January 2025</span><span>•</span><span>admin</span>
+                </div>
+                <h2>
+                  The Ultimate Guide to Car Maintenance: Keeping Your Vehicle in
+                  Top Shape
+                </h2>
+                <p>
+                  Regular preventive maintenance and timely vehicle care help
+                  identify issues early and keep your car reliable, efficient,
+                  and safe.
+                </p>
+                <a
+                  class="read-more"
+                  href="the-ultimate-guide-to-car-maintenance-keeping-your-vehicle-in-top-shape.html"
+                  >Read More <span>↗</span></a
+                >
+              </div>
+            </article>
+            <article
+              class="blog-card reveal"
+              data-title="how to choose the right auto repair shop for your vehicle"
+              data-category="Workshop"
+              data-tags="consultant"
+            >
+              <div class="card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1562141961-6a2a1f6e8b3f?auto=format&fit=crop&w=1200&q=88"
+                  alt="Choosing a professional auto repair workshop"
+                  loading="lazy"
+                />
+              </div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span>21 January 2025</span><span>•</span><span>admin</span>
+                </div>
+                <h2>
+                  How to Choose the Right Auto Repair Shop for Your Vehicle
+                </h2>
+                <p>
+                  Regular preventive maintenance and timely vehicle care help
+                  identify issues early and keep your car reliable, efficient,
+                  and safe.
+                </p>
+                <a
+                  class="read-more"
+                  href="how-to-choose-the-right-auto-repair-shop-for-your-vehicle.html"
+                  >Read More <span>↗</span></a
+                >
+              </div>
+            </article>
+            <div class="no-results" id="noResults">
+              No articles matched your search/filter.
+            </div>
+          </div>
+        </section>
+        <aside class="blog-sidebar">
+          <aside class="sidebar">
+            <div class="side-card reveal">
+              <h3 class="side-title">Search</h3>
+              <form class="search-form" action="blog.html" method="get">
+                <input
+                  name="search"
+                  placeholder="Search here..."
+                  aria-label="Search blogs"
+                /><button type="submit">⌕</button>
+              </form>
+            </div>
+            <div class="side-card reveal">
+              <h3 class="side-title">Categories</h3>
+              <div class="cat-list">
+                <a class="" href="blog.html?category=Auto Car"
+                  ><span>Auto Car</span><span>(05)</span></a
+                ><a class="" href="blog.html?category=Battery Check"
+                  ><span>Battery Check</span><span>(01)</span></a
+                ><a class="" href="blog.html?category=Car Denting Repair"
+                  ><span>Car Denting Repair</span><span>(02)</span></a
+                ><a class="" href="blog.html?category=Engine Repair"
+                  ><span>Engine Repair</span><span>(01)</span></a
+                ><a class="" href="blog.html?category=Exhaust System Repair"
+                  ><span>Exhaust System Repair</span><span>(01)</span></a
+                ><a class="" href="blog.html?category=Hydro Dripping"
+                  ><span>Hydro Dripping</span><span>(01)</span></a
+                ><a class="" href="blog.html?category=Workshop"
+                  ><span>Workshop</span><span>(03)</span></a
+                >
+              </div>
+            </div>
+            <div class="side-card reveal">
+              <h3 class="side-title">Recent Posts</h3>
+              <div class="recent-list">
+                <div class="recent-item">
+                  <strong
+                    ><a
+                      href="why-regular-car-maintenance-is-crucial-for-your-vehicles-longevity.html"
+                      >How to Extend the Life of Your Car with Preventive
+                      Maintenance</a
+                    ></strong
+                  ><small>21 March 2025</small>
+                </div>
+                <div class="recent-item">
+                  <strong
+                    ><a
+                      href="whats-the-best-time-to-schedule-your-cars-tune-up.html"
+                      >What’s the Best Time to Schedule Your Car’s Tune-Up?</a
+                    ></strong
+                  ><small>21 March 2025</small>
+                </div>
+                <div class="recent-item">
+                  <strong
+                    ><a
+                      href="top-10-car-repairs-that-can-save-you-money-in-the-long-run.html"
+                      >Top 10 Car Repairs That Can Save You Money in the Long
+                      Run</a
+                    ></strong
+                  ><small>21 March 2025</small>
+                </div>
+                <div class="recent-item">
+                  <strong
+                    ><a
+                      href="car-service-myths-debunked-what-you-really-need-to-know.html"
+                      >Car service myths debunked: What you really need to
+                      know</a
+                    ></strong
+                  ><small>21 March 2025</small>
+                </div>
+                <div class="recent-item">
+                  <strong
+                    ><a
+                      href="how-to-save-money-on-auto-repairs-without-compromising-quality.html"
+                      >How to save money on auto repairs without compromising
+                      quality</a
+                    ></strong
+                  ><small>21 March 2025</small>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </aside>
+      </div>
+    </main>
+    <footer>
+      <div class="footer-inner">
+        <div>
+          <img
+            class="footer-logo"
+            src="data:image/png;base64,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"
+            alt="Unico Motors"
+          />
+          <p>
+            UNICO MOTORS, a unit of Unico Logistics &amp; Carrier Pvt. Ltd. with
+            myTVS, offers modern tools, quality car repair, and low-cost
+            service.
+          </p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <p>
+            <a href="index.html">Home</a><br /><a href="about.html">About Us</a
+            ><br /><a href="services.html">Our Services</a><br /><a
+              href="blog.html"
+              >Blog</a
+            ><br /><a href="gallery.html">Gallery</a>
+          </p>
+        </div>
+        <div>
+          <h4>Contact Info</h4>
+          <p>
+            Plot No – 7, Jothbhim, Po. Hatgacha, Ps. KLC (Near Green Field
+            Heights, New Town), Dist: South 24 Paraganas, Kolkata – 700 156,
+            West Bengal, India
+          </p>
+          <p>
+            <a href="mailto:info@unicomotors.com">info@unicomotors.com</a
+            ><br /><a href="tel:+918100929501">+91 81009 29501</a>
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2025 UNICO MOTORS. All Rights Reserved.</div>
+    </footer>
+    <script>
+      const menu = document.getElementById("mobileMenu"),
+        nav = document.getElementById("navLinks");
+      if (menu)
+        menu.addEventListener("click", () => nav.classList.toggle("open"));
+      const io = new IntersectionObserver(
+        (es) =>
+          es.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("show");
+              io.unobserve(e.target);
+            }
+          }),
+        { threshold: 0.1, rootMargin: "0px 0px -45px 0px" },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      /* Live page-scroll progress */
+      const progress = document.getElementById("scrollProgress");
+      function updateScrollUI() {
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - window.innerHeight;
+        const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+        if (progress) progress.style.width = pct + "%";
+
+        /* Subtle hero movement while the user scrolls */
+        const hero = document.querySelector(".blog-hero");
+        if (hero && window.innerWidth > 650) {
+          const y = Math.min(window.scrollY * 0.12, 42);
+          hero.style.backgroundPosition = "center " + y + "px";
+        }
+      }
+      let ticking = false;
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (!ticking) {
+            requestAnimationFrame(() => {
+              updateScrollUI();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        },
+        { passive: true },
+      );
+      updateScrollUI();
+
+      document.querySelectorAll(".card-image img").forEach((img) => {
+        img.addEventListener("error", () => {
+          img.style.display = "none";
+          img.parentElement.classList.add("image-fallback");
+        });
+      });
+
+      const params = new URLSearchParams(location.search);
+      let active = params.get("category") || "All",
+        q = (params.get("search") || "").toLowerCase().trim();
+      const buttons = [...document.querySelectorAll(".filter-btn")],
+        cards = [...document.querySelectorAll(".blog-card")],
+        no = document.getElementById("noResults");
+      function apply() {
+        let shown = 0;
+        cards.forEach((c) => {
+          const okCat =
+            active === "All" ||
+            c.dataset.category === active ||
+            c.dataset.tags.includes(active.toLowerCase());
+          const okSearch =
+            !q ||
+            c.dataset.title.includes(q) ||
+            c.dataset.tags.includes(q) ||
+            c.dataset.category.toLowerCase().includes(q);
+          const show = okCat && okSearch;
+          c.classList.toggle("hidden", !show);
+          if (show) shown++;
+        });
+        no.style.display = shown ? "none" : "block";
+        buttons.forEach((b) =>
+          b.classList.toggle("active", b.dataset.filter === active),
+        );
+      }
+      buttons.forEach((b) =>
+        b.addEventListener("click", () => {
+          active = b.dataset.filter;
+          q = "";
+          history.replaceState(
+            null,
+            "",
+            "blog.html" +
+              (active === "All"
+                ? ""
+                : "?category=" + encodeURIComponent(active)),
+          );
+          apply();
+          window.scrollTo({
+            top: document.querySelector(".filters").offsetTop - 120,
+            behavior: "smooth",
+          });
+        }),
+      );
+      apply();
+    </script>
+  </body>
+</html>
