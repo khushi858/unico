@@ -2645,6 +2645,8 @@ body{
   }
 </style>
 
+
+<!-- Interactive 3D car viewer -->
 </head>
 
   <body>
@@ -2713,14 +2715,22 @@ body{
           </div>
         </div>
 
-        <div class="hero-visual">
-          <div class="hero-photo-frame">
-            <img
-              class="hero-photo"
-              src="https://png.pngtree.com/png-vector/20240309/ourmid/pngtree-black-super-car-png-image_11921537.png"
-              alt="VinFast VF8 electric SUV"
-              loading="eager"
-            />
+        <div class="hero-visual hero-3d-visual">
+          <div class="hero-3d-stage" id="hero3DStage">
+            <div class="hero-car-interactive hero-image-3d" id="heroCarInteractive" aria-label="Interactive 3D-style VinFast VF MPV 7">
+              <div class="hero-car-3d-spin" id="heroCar3DSpin">
+                <div class="hero-car-face hero-car-front">
+                  <img id="heroCarModel" class="hero-car-model hero-car-image-new"
+                    src="https://www.v3cars.com/cdn-cgi/image/width=1920%2Cquality=75%2Cformat=auto/https://assets.v3cars.com/media/model-imgs/745023vinfast-vf-mpv-7.webp"
+                    alt="VinFast VF MPV 7" loading="eager" decoding="async" fetchpriority="high">
+                </div>
+                <div class="hero-car-face hero-car-back" aria-hidden="true">
+                  <img class="hero-car-model hero-car-image-new"
+                    src="https://www.v3cars.com/cdn-cgi/image/width=1920%2Cquality=75%2Cformat=auto/https://assets.v3cars.com/media/model-imgs/745023vinfast-vf-mpv-7.webp"
+                    alt="">
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -4355,6 +4365,431 @@ body{
         <span class="road-wheel road-wheel-b"><i></i></span>
       </div>
     </div>
+
+<style id="continuous-scroll-car-final">
+.scroll-road-car{opacity:1!important}
+.scroll-road-car .road-car{transition:none!important;animation:none!important}
+.scroll-road-car.is-driving .road-car,.scroll-road-car.is-driving.reverse .road-car{animation:none!important}
+.scroll-road-car .road-wheel i{animation:wheelSpin .7s linear infinite}
+@keyframes wheelSpin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.scroll-road-car .road-wheel i{animation:none!important}}
+</style>
+
+<style id="hero-interactive-3d-final">
+/* =========================================================
+   HERO VF8 — CLEAN INTERACTIVE CAR
+   Uses the exact VF8 hero reference image, keeps the car
+   fully visible, slowly rotates automatically and supports
+   left/right mouse or touch dragging.
+   ========================================================= */
+.hero.hero-3d-ready{overflow:hidden !important}
+.hero-3d-visual{
+  position:relative !important;
+  height:590px !important;
+  min-width:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:visible !important;
+}
+.hero-3d-stage{
+  position:relative !important;
+  width:min(790px,61vw) !important;
+  height:555px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  perspective:1400px !important;
+  overflow:visible !important;
+}
+.hero-3d-glow{
+  position:absolute !important;
+  z-index:0 !important;
+  left:51% !important;
+  top:65% !important;
+  width:78% !important;
+  height:27% !important;
+  transform:translate(-50%,-50%) !important;
+  border-radius:50% !important;
+  background:radial-gradient(ellipse,rgba(244,123,0,.18) 0%,rgba(244,123,0,.07) 38%,rgba(244,123,0,0) 74%) !important;
+  filter:blur(18px) !important;
+  pointer-events:none !important;
+}
+.hero-3d-stage::before{
+  content:"" !important;
+  position:absolute !important;
+  z-index:0 !important;
+  left:50% !important;
+  bottom:8% !important;
+  width:72% !important;
+  height:12% !important;
+  transform:translateX(-50%) !important;
+  border:2px solid rgba(244,123,0,.42) !important;
+  border-top-color:rgba(244,123,0,.10) !important;
+  border-radius:50% !important;
+  box-shadow:0 0 0 8px rgba(244,123,0,.025),0 0 32px rgba(244,123,0,.09) !important;
+  pointer-events:none !important;
+}
+.hero-car-interactive{
+  position:relative !important;
+  z-index:3 !important;
+  width:min(760px,100%) !important;
+  height:500px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  transform-style:preserve-3d !important;
+  cursor:grab !important;
+  user-select:none !important;
+  -webkit-user-select:none !important;
+  touch-action:none !important;
+  outline:none !important;
+}
+.hero-car-interactive:active{cursor:grabbing !important}
+.hero-car-image{
+  display:block !important;
+  width:100% !important;
+  height:auto !important;
+  max-height:500px !important;
+  object-fit:contain !important;
+  object-position:center !important;
+  user-select:none !important;
+  -webkit-user-drag:none !important;
+  pointer-events:none !important;
+  mix-blend-mode:multiply !important;
+  filter:saturate(1.04) contrast(1.02) brightness(1.03) drop-shadow(0 28px 22px rgba(0,0,0,.13)) !important;
+  transform-origin:center center !important;
+  will-change:transform !important;
+}
+.hero-3d-hint{
+  position:absolute !important;
+  z-index:5 !important;
+  top:24px !important;
+  right:26px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  gap:5px !important;
+  color:#7d878d !important;
+  font:800 9px/1.2 Arial,sans-serif !important;
+  letter-spacing:1.2px !important;
+  pointer-events:none !important;
+  opacity:.88 !important;
+}
+.hero-3d-mouse{
+  font-size:30px !important;
+  line-height:1 !important;
+  color:#f47b00 !important;
+  font-weight:400 !important;
+}
+.hero-360-label{
+  position:absolute !important;
+  z-index:5 !important;
+  right:7% !important;
+  bottom:2% !important;
+  color:#111518 !important;
+  font:900 31px/1 Arial,sans-serif !important;
+  letter-spacing:-1px !important;
+  pointer-events:none !important;
+}
+.hero-360-label::after{
+  content:"↔" !important;
+  display:block !important;
+  text-align:center !important;
+  color:#f47b00 !important;
+  font-size:25px !important;
+  line-height:.8 !important;
+  margin-top:4px !important;
+}
+.hero-360-label small{
+  display:block !important;
+  margin-top:6px !important;
+  text-align:center !important;
+  color:#69747c !important;
+  font-size:8px !important;
+  letter-spacing:1.6px !important;
+}
+.hero-3d-visual .hero-photo-frame,
+.hero-3d-visual .hero-photo{display:none !important}
+@media(max-width:1100px){
+  .hero-3d-stage{width:min(720px,62vw) !important;height:530px !important}
+  .hero-car-interactive{height:470px !important}
+  .hero-car-image{max-height:470px !important}
+}
+@media(max-width:800px){
+  .hero-3d-visual{height:400px !important;margin-top:5px !important}
+  .hero-3d-stage{width:100% !important;height:400px !important}
+  .hero-car-interactive{width:100% !important;height:360px !important}
+  .hero-car-image{max-height:360px !important}
+  .hero-3d-hint{top:4px !important;right:12px !important}
+  .hero-360-label{right:3% !important;bottom:1% !important;font-size:23px !important}
+}
+@media(max-width:600px){
+  .hero-3d-visual{height:320px !important}
+  .hero-3d-stage{height:320px !important}
+  .hero-car-interactive{height:300px !important}
+  .hero-car-image{max-height:300px !important}
+  .hero-3d-hint{font-size:7px !important;top:0 !important;right:5px !important}
+  .hero-3d-mouse{font-size:22px !important}
+  .hero-360-label{font-size:18px !important}
+  .hero-360-label::after{font-size:18px !important}
+}
+</style>
+
+<script id="hero-interactive-3d-js">
+/* The embedded 3D viewer provides real 360° rotation and mouse/touch orbit controls. */
+</script>
+
+
+<style id="hero-car-true-360-final">
+/* TRUE 360° HERO CAR — real 3D model, no card, no labels, no rings */
+.hero-3d-visual{position:relative;z-index:3;display:flex;align-items:center;justify-content:center;height:570px;overflow:visible}
+.hero-3d-stage{position:relative;width:min(760px,58vw);height:540px;display:flex;align-items:center;justify-content:center;background:transparent;overflow:visible}
+.hero-car-interactive{position:relative;width:100%;height:100%;background:transparent;border:0;box-shadow:none;overflow:hidden;touch-action:pan-y;cursor:grab}
+.hero-car-interactive:active{cursor:grabbing}
+.hero-vf8-viewer{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent;display:block}
+/* Remove any legacy decorative hero overlays */
+.hero-3d-glow,.hero-tech-ring,.hero-spec,.hero-number,.hero-360-label{display:none!important}
+@media(max-width:1100px){
+  .hero-3d-stage{width:min(720px,62vw);height:500px}
+}
+@media(max-width:800px){
+  .hero-3d-visual{height:400px;margin-top:5px}
+  .hero-3d-stage{width:100%;height:400px}
+}
+@media(max-width:600px){
+  .hero-3d-visual{height:310px}
+  .hero-3d-stage{height:310px}
+}
+</style>
+
+
+<style id="hero-true-360-override-final">
+.hero-3d-visual{overflow:visible!important;background:transparent!important}
+.hero-3d-stage{background:transparent!important;box-shadow:none!important;border:0!important;overflow:visible!important}
+.hero-car-interactive{background:transparent!important;box-shadow:none!important;border:0!important;overflow:hidden!important}
+.hero-vf8-viewer{background:transparent!important}
+.hero-car-image{display:none!important}
+.hero-3d-glow,.hero-tech-ring,.hero-spec,.hero-number,.hero-360-label{display:none!important}
+</style>
+
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<style id="hero-game-style-final">
+/* FINAL HERO: game-style 3D car, transparent stage, no UI */
+.hero.hero-3d-ready{overflow:hidden!important}
+.hero-3d-visual{height:590px!important;overflow:visible!important;background:transparent!important}
+.hero-3d-stage{width:min(790px,61vw)!important;height:555px!important;background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important;perspective:none!important}
+.hero-3d-stage::before,.hero-3d-glow,.hero-3d-hint,.hero-360-label,.hero-tech-ring,.hero-spec,.hero-number{display:none!important}
+.hero-car-interactive{width:100%!important;height:100%!important;display:flex!important;align-items:center!important;justify-content:center!important;background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important;cursor:grab!important;touch-action:none!important}
+.hero-car-interactive:active{cursor:grabbing!important}
+.hero-vf8-viewer,.hero-car-image{display:none!important}
+.hero-car-model{display:block!important;width:100%!important;height:100%!important;background:transparent!important;--poster-color:transparent;--progress-bar-color:transparent;--progress-mask:transparent;--progress-bar-height:0px;--interaction-prompt-display:none;outline:none!important}
+.hero-car-model::part(default-progress-bar){display:none!important}
+@media(max-width:1100px){.hero-3d-stage{width:min(720px,62vw)!important;height:500px!important}.hero-car-interactive{height:100%!important}}
+@media(max-width:800px){.hero-3d-visual{height:400px!important;margin-top:5px!important}.hero-3d-stage{width:100%!important;height:400px!important}}
+@media(max-width:600px){.hero-3d-visual{height:320px!important}.hero-3d-stage{height:320px!important}}
+@media(prefers-reduced-motion:reduce){.hero-car-model{--auto-rotate:0!important}}
+</style>
+<script id="hero-game-rotation-final">
+(function(){
+  const model=document.getElementById('heroCarModel');
+  if(!model) return;
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
+  function setAuto(){
+    if(reduce.matches){
+      model.removeAttribute('auto-rotate');
+    }else{
+      model.setAttribute('auto-rotate','');
+      model.setAttribute('auto-rotate-delay','0');
+      model.setAttribute('rotation-per-second','10deg');
+    }
+  }
+  setAuto();
+  reduce.addEventListener?.('change',setAuto);
+})();
+</script>
+
+<style id="hero-hd-render-final">
+.hero-car-model{
+  width:100%!important;
+  height:100%!important;
+  background:transparent!important;
+  --poster-color:transparent;
+  --progress-bar-color:transparent;
+  --progress-mask:transparent;
+  --progress-bar-height:0px;
+  --interaction-prompt-display:none;
+  image-rendering:auto!important;
+  filter:saturate(1.06) contrast(1.03)!important;
+}
+.hero-car-model::part(default-progress-bar){display:none!important}
+.hero-car-interactive{transform:translateZ(0);backface-visibility:hidden}
+</style>
+<script id="hero-hd-quality-final">
+(function(){
+  const m=document.getElementById('heroCarModel');
+  if(!m) return;
+  m.setAttribute('environment-image','https://modelviewer.dev/shared-assets/environments/whipplecreek.hdr');
+  m.setAttribute('tone-mapping','aces');
+  m.setAttribute('exposure','1.15');
+  m.setAttribute('shadow-intensity','0.32');
+  m.setAttribute('shadow-softness','0.35');
+})();
+</script>
+
+<style id="hero-vf-mpv7-image-final">
+/* VF MPV 7 supplied image — clean, large, sharp hero presentation */
+.hero-car-image-new{
+  display:block!important;
+  width:min(760px,100%)!important;
+  height:auto!important;
+  max-width:none!important;
+  max-height:555px!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  filter:saturate(1.04) contrast(1.03) brightness(1.02)!important;
+  transform:translateZ(0)!important;
+  image-rendering:auto!important;
+}
+.hero-car-interactive{
+  overflow:visible!important;
+  background:transparent!important;
+}
+@media(max-width:1100px){
+  .hero-car-image-new{width:min(700px,100%)!important;max-height:500px!important}
+}
+@media(max-width:800px){
+  .hero-car-image-new{width:100%!important;max-height:390px!important}
+}
+@media(max-width:600px){
+  .hero-car-image-new{width:100%!important;max-height:310px!important}
+}
+</style>
+
+
+<style id="vf-mpv7-3d-image-final">
+/* VF MPV 7 — 3D-style showroom rotation using the supplied HD image. */
+.hero-image-3d{
+  perspective:1200px!important;
+  perspective-origin:50% 50%!important;
+  overflow:visible!important;
+  cursor:grab!important;
+  user-select:none!important;
+  -webkit-user-select:none!important;
+  touch-action:none!important;
+}
+.hero-image-3d:active{cursor:grabbing!important}
+.hero-car-3d-spin{
+  position:relative!important;
+  width:min(760px,100%)!important;
+  height:555px!important;
+  transform-style:preserve-3d!important;
+  will-change:transform!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.hero-car-face{
+  position:absolute!important;
+  inset:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  backface-visibility:hidden!important;
+  -webkit-backface-visibility:hidden!important;
+  transform-style:preserve-3d!important;
+}
+.hero-car-front{transform:translateZ(1px)!important}
+.hero-car-back{transform:rotateY(180deg) translateZ(1px)!important}
+.hero-car-face img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  filter:saturate(1.08) contrast(1.05) brightness(1.03) drop-shadow(0 24px 28px rgba(0,0,0,.20))!important;
+  pointer-events:none!important;
+  image-rendering:auto!important;
+}
+.hero-car-back img{transform:scaleX(-1)!important}
+.hero-car-model::part(default-progress-bar){display:none!important}
+@media(max-width:1100px){
+  .hero-car-3d-spin{width:min(700px,100%)!important;height:500px!important}
+}
+@media(max-width:800px){
+  .hero-car-3d-spin{width:100%!important;height:390px!important}
+}
+@media(max-width:600px){
+  .hero-car-3d-spin{height:310px!important}
+}
+</style>
+<script id="vf-mpv7-3d-image-final-js">
+(function(){
+  const stage=document.getElementById('heroCarInteractive');
+  const spin=document.getElementById('heroCar3DSpin');
+  if(!stage||!spin) return;
+
+  let angle=0;
+  let target=0;
+  let dragging=false;
+  let lastX=0;
+  let velocity=0;
+  let lastT=performance.now();
+
+  function wrap(a){
+    return ((a%360)+360)%360;
+  }
+
+  function frame(now){
+    const dt=Math.min(40,now-lastT);
+    lastT=now;
+    if(!dragging){
+      target += 0.018*dt;
+      angle += (target-angle)*0.08;
+    }else{
+      angle += velocity*dt;
+      velocity *= Math.pow(0.001,dt/1000);
+      target=angle;
+    }
+    spin.style.transform='rotateY('+wrap(angle)+'deg)';
+    requestAnimationFrame(frame);
+  }
+
+  function down(e){
+    dragging=true; lastX=e.clientX; velocity=0;
+    stage.setPointerCapture?.(e.pointerId);
+  }
+  function move(e){
+    if(!dragging) return;
+    const dx=e.clientX-lastX;
+    lastX=e.clientX;
+    const amount=dx*0.42;
+    angle+=amount; target=angle; velocity=amount/16;
+  }
+  function up(e){
+    dragging=false;
+    stage.releasePointerCapture?.(e.pointerId);
+  }
+
+  stage.addEventListener('pointerdown',down);
+  stage.addEventListener('pointermove',move);
+  stage.addEventListener('pointerup',up);
+  stage.addEventListener('pointercancel',up);
+  stage.addEventListener('pointerleave',function(e){ if(dragging && e.buttons===0) up(e); });
+
+  document.addEventListener('visibilitychange',function(){
+    if(document.hidden) velocity=0;
+  });
+
+  requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>
 
@@ -4772,36 +5207,30 @@ body{
 </style>
 
 <script id="unico-motion-footer-js">
-(function(){
+(function () {
   const car = document.getElementById("scrollRoadCar");
-  if(!car) return;
-
-  let lastY = window.scrollY || 0;
-  let timer = null;
-  let busy = false;
-
-  function driveCar(direction){
-    if(busy) return;
-    busy = true;
-
-    car.classList.remove("is-driving", "reverse");
-    void car.offsetWidth;
-
-    if(direction === "up") car.classList.add("reverse");
-    car.classList.add("is-driving");
-
-    clearTimeout(timer);
-    timer = setTimeout(function(){
-      car.classList.remove("is-driving", "reverse");
-      busy = false;
-    }, 1450);
+  if (!car) return;
+  const roadCar = car.querySelector(".road-car");
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced) { car.style.opacity = "1"; roadCar.style.left = "0px"; return; }
+  let ticking = false;
+  function updateCarPosition() {
+    const scrollTop = window.scrollY || window.pageYOffset || 0;
+    const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const progress = Math.max(0, Math.min(1, scrollTop / maxScroll));
+    const carWidth = roadCar.offsetWidth || 70;
+    const startX = -carWidth - 15;
+    const endX = window.innerWidth + 15;
+    roadCar.style.left = `${startX + (endX - startX) * progress}px`;
+    car.style.opacity = "1";
+    ticking = false;
   }
-
-  window.addEventListener("scroll", function(){
-    const y = window.scrollY || 0;
-    if(y > lastY + 4) driveCar("down");
-    else if(y < lastY - 4) driveCar("up");
-    lastY = y;
-  }, {passive:true});
+  function requestUpdate() {
+    if (!ticking) { requestAnimationFrame(updateCarPosition); ticking = true; }
+  }
+  window.addEventListener("scroll", requestUpdate, {passive:true});
+  window.addEventListener("resize", requestUpdate, {passive:true});
+  window.addEventListener("load", requestUpdate);
+  requestUpdate();
 })();
 </script>
