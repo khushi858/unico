@@ -2717,19 +2717,15 @@ body{
 
         <div class="hero-visual hero-3d-visual">
           <div class="hero-3d-stage" id="hero3DStage">
-            <div class="hero-car-interactive hero-image-3d" id="heroCarInteractive" aria-label="Interactive 3D-style VinFast VF MPV 7">
-              <div class="hero-car-3d-spin" id="heroCar3DSpin">
-                <div class="hero-car-face hero-car-front">
-                  <img id="heroCarModel" class="hero-car-model hero-car-image-new"
-                    src="https://www.v3cars.com/cdn-cgi/image/width=1920%2Cquality=75%2Cformat=auto/https://assets.v3cars.com/media/model-imgs/745023vinfast-vf-mpv-7.webp"
-                    alt="VinFast VF MPV 7" loading="eager" decoding="async" fetchpriority="high">
-                </div>
-                <div class="hero-car-face hero-car-back" aria-hidden="true">
-                  <img class="hero-car-model hero-car-image-new"
-                    src="https://www.v3cars.com/cdn-cgi/image/width=1920%2Cquality=75%2Cformat=auto/https://assets.v3cars.com/media/model-imgs/745023vinfast-vf-mpv-7.webp"
-                    alt="">
-                </div>
-              </div>
+            <div class="hero-car-interactive" id="heroCarInteractive" aria-label="Interactive 3D super car">
+              <img
+                id="heroCarModel"
+                class="hero-car-model hero-car-image-new"
+                src="https://www.v3cars.com/cdn-cgi/image/width=1920%2Cquality=75%2Cformat=auto/https://assets.v3cars.com/media/model-imgs/745023vinfast-vf-mpv-7.webp"
+                alt="VinFast VF MPV 7"
+                loading="eager"
+                decoding="async"
+                fetchpriority="high">
             </div>
           </div>
         </div>
@@ -4669,127 +4665,6 @@ body{
 }
 </style>
 
-
-<style id="vf-mpv7-3d-image-final">
-/* VF MPV 7 — 3D-style showroom rotation using the supplied HD image. */
-.hero-image-3d{
-  perspective:1200px!important;
-  perspective-origin:50% 50%!important;
-  overflow:visible!important;
-  cursor:grab!important;
-  user-select:none!important;
-  -webkit-user-select:none!important;
-  touch-action:none!important;
-}
-.hero-image-3d:active{cursor:grabbing!important}
-.hero-car-3d-spin{
-  position:relative!important;
-  width:min(760px,100%)!important;
-  height:555px!important;
-  transform-style:preserve-3d!important;
-  will-change:transform!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-}
-.hero-car-face{
-  position:absolute!important;
-  inset:0!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  backface-visibility:hidden!important;
-  -webkit-backface-visibility:hidden!important;
-  transform-style:preserve-3d!important;
-}
-.hero-car-front{transform:translateZ(1px)!important}
-.hero-car-back{transform:rotateY(180deg) translateZ(1px)!important}
-.hero-car-face img{
-  display:block!important;
-  width:100%!important;
-  height:100%!important;
-  object-fit:contain!important;
-  object-position:center!important;
-  background:transparent!important;
-  border:0!important;
-  box-shadow:none!important;
-  filter:saturate(1.08) contrast(1.05) brightness(1.03) drop-shadow(0 24px 28px rgba(0,0,0,.20))!important;
-  pointer-events:none!important;
-  image-rendering:auto!important;
-}
-.hero-car-back img{transform:scaleX(-1)!important}
-.hero-car-model::part(default-progress-bar){display:none!important}
-@media(max-width:1100px){
-  .hero-car-3d-spin{width:min(700px,100%)!important;height:500px!important}
-}
-@media(max-width:800px){
-  .hero-car-3d-spin{width:100%!important;height:390px!important}
-}
-@media(max-width:600px){
-  .hero-car-3d-spin{height:310px!important}
-}
-</style>
-<script id="vf-mpv7-3d-image-final-js">
-(function(){
-  const stage=document.getElementById('heroCarInteractive');
-  const spin=document.getElementById('heroCar3DSpin');
-  if(!stage||!spin) return;
-
-  let angle=0;
-  let target=0;
-  let dragging=false;
-  let lastX=0;
-  let velocity=0;
-  let lastT=performance.now();
-
-  function wrap(a){
-    return ((a%360)+360)%360;
-  }
-
-  function frame(now){
-    const dt=Math.min(40,now-lastT);
-    lastT=now;
-    if(!dragging){
-      target += 0.018*dt;
-      angle += (target-angle)*0.08;
-    }else{
-      angle += velocity*dt;
-      velocity *= Math.pow(0.001,dt/1000);
-      target=angle;
-    }
-    spin.style.transform='rotateY('+wrap(angle)+'deg)';
-    requestAnimationFrame(frame);
-  }
-
-  function down(e){
-    dragging=true; lastX=e.clientX; velocity=0;
-    stage.setPointerCapture?.(e.pointerId);
-  }
-  function move(e){
-    if(!dragging) return;
-    const dx=e.clientX-lastX;
-    lastX=e.clientX;
-    const amount=dx*0.42;
-    angle+=amount; target=angle; velocity=amount/16;
-  }
-  function up(e){
-    dragging=false;
-    stage.releasePointerCapture?.(e.pointerId);
-  }
-
-  stage.addEventListener('pointerdown',down);
-  stage.addEventListener('pointermove',move);
-  stage.addEventListener('pointerup',up);
-  stage.addEventListener('pointercancel',up);
-  stage.addEventListener('pointerleave',function(e){ if(dragging && e.buttons===0) up(e); });
-
-  document.addEventListener('visibilitychange',function(){
-    if(document.hidden) velocity=0;
-  });
-
-  requestAnimationFrame(frame);
-})();
-</script>
 </body>
 </html>
 
