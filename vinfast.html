@@ -5580,7 +5580,7 @@
         background: #fff !important;
       }
       .reference-hero-image {
-        background-image: url("https://c.ndtvimg.com/2026-05/sa88istk_newgen-vinfast-vf8_625x300_24_May_26.jpg?im=FaceCrop,algorithm=dnn,width=1600,height=900") !important;
+        background-image: url("https://static-cms-prod.vinfastauto.in/statics/2025-09/vf6_intro.webp") !important;
         background-repeat: no-repeat !important;
         background-position: right center !important;
         background-size: auto 100% !important;
@@ -7034,6 +7034,324 @@
         }
       }
     </style>
+
+    <style id="vinfast-final-hero-nav-animation-fix">
+      /* ===== FINAL VINFAST HERO / NAV FIX ===== */
+
+      /* Keep the selected VF8 photo fully visible on the right.
+         Remove the white opacity/gradient layer that was washing out the car. */
+      .reference-hero-image {
+        background-image: url("https://static-cms-prod.vinfastauto.in/statics/2025-09/vf6_intro.webp") !important;
+        background-repeat: no-repeat !important;
+        background-position: right center !important;
+        background-size: auto 100% !important;
+        filter: saturate(1.04) contrast(1.04) brightness(1.02) !important;
+      }
+
+      .reference-hero::before {
+        display: none !important;
+        content: none !important;
+      }
+
+      /* VinFast nav item + orange EV badge, matching the reference header. */
+      .vinfast-nav-link {
+        display: inline-flex !important;
+        align-items: center;
+        gap: 7px;
+        white-space: nowrap;
+      }
+
+      .vinfast-ev-tag {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 31px;
+        height: 22px;
+        padding: 0 6px;
+        border-radius: 2px;
+        background: #f28a18;
+        color: #fff;
+        font-size: 9px;
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: 0.4px;
+        box-shadow: 0 3px 8px rgba(242, 138, 24, 0.2);
+      }
+
+      .nav-links .vinfast-nav-link::after {
+        right: 0;
+      }
+
+      /* Small car that drives left -> right when the user scrolls downward. */
+      .scroll-car-animation {
+        position: fixed;
+        left: -90px;
+        bottom: 14px;
+        width: 62px;
+        height: 34px;
+        z-index: 9999;
+        pointer-events: none;
+        opacity: 0;
+        transform: translateX(0);
+      }
+
+      .scroll-car-animation.is-driving {
+        opacity: 1;
+        animation: scrollCarDrive 1.35s cubic-bezier(0.22, 0.75, 0.25, 1)
+          forwards;
+      }
+
+      .scroll-car-svg {
+        width: 62px;
+        height: 34px;
+        display: block;
+        filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.18));
+      }
+
+      @keyframes scrollCarDrive {
+        0% {
+          transform: translateX(0);
+          opacity: 0;
+        }
+        8% {
+          opacity: 1;
+        }
+        88% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(calc(100vw + 150px));
+          opacity: 0;
+        }
+      }
+
+      @media (max-width: 1000px) {
+        .reference-hero-image {
+          background-size: auto 100% !important;
+          background-position: right center !important;
+        }
+
+        .vinfast-nav-link {
+          gap: 6px;
+        }
+      }
+
+      @media (max-width: 650px) {
+        .reference-hero-image {
+          background-size: 100% auto !important;
+          background-position: center bottom !important;
+        }
+
+        .vinfast-ev-tag {
+          min-width: 27px;
+          height: 19px;
+          font-size: 8px;
+        }
+
+        .scroll-car-animation {
+          bottom: 10px;
+          width: 52px;
+          height: 29px;
+        }
+
+        .scroll-car-svg {
+          width: 52px;
+          height: 29px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .scroll-car-animation {
+          display: none !important;
+        }
+      }
+    </style>
+
+    <style id="vinfast-expanded-lineup-fix">
+      /* Expanded VinFast lineup: keep every added vehicle large and clean. */
+      .vinfast-lineup .lineup-list {
+        gap: 28px !important;
+      }
+
+      .vinfast-lineup .lineup-car {
+        min-height: 390px !important;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(17, 19, 23, 0.08);
+      }
+
+      .vinfast-lineup .lineup-image-wrap {
+        min-height: 350px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        overflow: hidden !important;
+      }
+
+      .vinfast-lineup .lineup-image-wrap img {
+        width: 100% !important;
+        height: 350px !important;
+        max-height: 350px !important;
+        object-fit: contain !important;
+        object-position: center !important;
+        mix-blend-mode: multiply;
+        transition:
+          transform 0.55s ease,
+          filter 0.55s ease !important;
+      }
+
+      .vinfast-lineup .lineup-car:hover .lineup-image-wrap img {
+        transform: scale(1.035) !important;
+      }
+
+      .vinfast-lineup .lineup-copy h3 {
+        margin-bottom: 10px !important;
+      }
+
+      .vinfast-lineup .lineup-copy p {
+        letter-spacing: 1.5px !important;
+      }
+
+      @media (max-width: 650px) {
+        .vinfast-lineup .lineup-car,
+        .vinfast-lineup .lineup-car-reverse {
+          min-height: 0 !important;
+        }
+
+        .vinfast-lineup .lineup-image-wrap {
+          min-height: 270px !important;
+        }
+
+        .vinfast-lineup .lineup-image-wrap img {
+          height: 270px !important;
+          max-height: 270px !important;
+        }
+      }
+    </style>
+
+    <style>
+      /* =========================================================
+   VINFAST LINEUP — HD / BG-BLEND / 3D VEHICLE PRESENTATION
+   ========================================================= */
+      .vinfast-lineup .lineup-image-wrap {
+        position: relative !important;
+        isolation: isolate !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 390px !important;
+        padding: 22px 14px 30px !important;
+        overflow: visible !important;
+        background: transparent !important;
+      }
+
+      /* soft 3D showroom platform under every car */
+      .vinfast-lineup .lineup-image-wrap::before {
+        content: "" !important;
+        position: absolute !important;
+        left: 8% !important;
+        right: 8% !important;
+        bottom: 26px !important;
+        height: 30px !important;
+        border-radius: 50% !important;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(0, 0, 0, 0.24) 0%,
+          rgba(0, 0, 0, 0.12) 38%,
+          rgba(0, 0, 0, 0) 74%
+        ) !important;
+        filter: blur(7px) !important;
+        transform: perspective(500px) rotateX(68deg) !important;
+        z-index: 0 !important;
+        pointer-events: none !important;
+      }
+
+      .vinfast-lineup .lineup-image-wrap::after {
+        content: "" !important;
+        position: absolute !important;
+        left: 12% !important;
+        right: 12% !important;
+        bottom: 25px !important;
+        height: 2px !important;
+        border-radius: 999px !important;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(244, 125, 0, 0.62),
+          transparent
+        ) !important;
+        box-shadow: 0 0 14px rgba(244, 125, 0, 0.25) !important;
+        z-index: 0 !important;
+        pointer-events: none !important;
+      }
+
+      .vinfast-lineup .lineup-image-wrap img {
+        position: relative !important;
+        z-index: 2 !important;
+        display: block !important;
+        width: 100% !important;
+        max-width: 620px !important;
+        height: 360px !important;
+        object-fit: contain !important;
+        object-position: center center !important;
+        background: transparent !important;
+        border: 0 !important;
+        outline: 0 !important;
+        mix-blend-mode: multiply !important;
+        filter: contrast(1.08) saturate(1.08) brightness(1.02)
+          drop-shadow(0 18px 12px rgba(0, 0, 0, 0.2))
+          drop-shadow(0 4px 3px rgba(0, 0, 0, 0.13)) !important;
+        transform: perspective(1100px) translateZ(0) scale(1.03) !important;
+        transform-origin: center bottom !important;
+        image-rendering: auto !important;
+        transition:
+          transform 0.45s cubic-bezier(0.2, 0.75, 0.2, 1),
+          filter 0.45s ease !important;
+      }
+
+      .vinfast-lineup .lineup-car:hover .lineup-image-wrap img {
+        transform: perspective(1100px) translateY(-7px) translateZ(18px)
+          rotateX(1deg) scale(1.075) !important;
+        filter: contrast(1.1) saturate(1.1) brightness(1.03)
+          drop-shadow(0 25px 18px rgba(0, 0, 0, 0.24))
+          drop-shadow(0 5px 4px rgba(0, 0, 0, 0.14)) !important;
+      }
+
+      /* stronger treatment for the three newly supplied source images */
+      .vinfast-lineup img[alt="VinFast VF 8"],
+      .vinfast-lineup img[alt="VinFast VF MPV 7"],
+      .vinfast-lineup img[alt="VinFast VF 3"] {
+        max-width: 650px !important;
+        height: 370px !important;
+      }
+
+      @media (max-width: 900px) {
+        .vinfast-lineup .lineup-image-wrap {
+          min-height: 320px !important;
+          padding: 12px 8px 24px !important;
+        }
+        .vinfast-lineup .lineup-image-wrap img {
+          height: 300px !important;
+          max-width: 560px !important;
+        }
+        .vinfast-lineup img[alt="VinFast VF 8"],
+        .vinfast-lineup img[alt="VinFast VF MPV 7"],
+        .vinfast-lineup img[alt="VinFast VF 3"] {
+          height: 310px !important;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .vinfast-lineup .lineup-image-wrap {
+          min-height: 275px !important;
+        }
+        .vinfast-lineup .lineup-image-wrap img,
+        .vinfast-lineup img[alt="VinFast VF 8"],
+        .vinfast-lineup img[alt="VinFast VF MPV 7"],
+        .vinfast-lineup img[alt="VinFast VF 3"] {
+          height: 255px !important;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -7063,6 +7381,9 @@
           <a href="services.html">Services</a>
           <a href="about.html">About Us</a>
           <a href="blog.html">Blog</a>
+          <a href="index.html" class="vinfast-nav-link active"
+            >VinFast <span class="vinfast-ev-tag">EV</span></a
+          >
           <a href="contact.html">Contact Us</a>
         </nav>
 
@@ -7348,7 +7669,7 @@
                 <img
                   decoding="async"
                   loading="lazy"
-                  src="https://www.evoindia.com/h-upload/uid/hEfQKGLYkFkdIQYSHmPVXcpnprhQNkI3.jpg"
+                  src="https://www.spinny.com/blog/wp-content/uploads/2025/09/VinFast-VF7-1160x653.webp"
                   alt="VinFast VF MPV 7"
                 />
               </div>
@@ -7414,6 +7735,75 @@
                 <div class="lineup-number">02</div>
                 <h3>VF 7</h3>
                 <p>SPORTY.<br />SOPHISTICATED.<br />ELECTRIC.</p>
+              </div>
+            </article>
+
+            <article class="lineup-car reveal">
+              <div class="lineup-copy">
+                <div class="lineup-number">03</div>
+                <h3>VF 8</h3>
+                <p>POWERFUL.<br />PREMIUM.<br />ELECTRIC SUV.</p>
+              </div>
+              <div class="lineup-image-wrap">
+                <img
+                  decoding="async"
+                  loading="lazy"
+                  src="https://vinfastauto.in/static/delivery/limo-green/images/intro-car.webp"
+                  alt="VinFast VF 8"
+                />
+              </div>
+            </article>
+
+            <article class="lineup-car lineup-car-reverse reveal">
+              <div class="lineup-image-wrap">
+                <img
+                  decoding="async"
+                  loading="lazy"
+                  src="https://vinfastautovn.com/public/userfiles/product_image/93/brahminy-white.png"
+                  alt="VinFast VF 9"
+                />
+              </div>
+              <div class="lineup-copy">
+                <div class="lineup-number">04</div>
+                <h3>VF 9</h3>
+                <p>FLAGSHIP.<br />SPACIOUS.<br />ELECTRIC SUV.</p>
+              </div>
+            </article>
+
+            <article class="lineup-car reveal">
+              <div class="lineup-copy">
+                <div class="lineup-number">05</div>
+                <h3>VF MPV 7</h3>
+                <p>FAMILY.<br />ROOMY.<br />ALL-ELECTRIC.</p>
+              </div>
+              <div class="lineup-image-wrap">
+                <img
+                  decoding="async"
+                  loading="lazy"
+                  src="https://shop.vinfastauto.ph/on/demandware.static/-/Sites-vinfast-ph-catalog/default/dwf21454b3/images/VF6/CE1/CE18.webp"
+                  alt="VinFast VF MPV 7"
+                />
+              </div>
+            </article>
+
+            <article class="lineup-car lineup-car-reverse reveal">
+              <div class="lineup-image-wrap">
+                <img
+                  decoding="async"
+                  loading="lazy"
+                  src="https://www.v3cars.com/cdn-cgi/image/width=1920%2Cquality=75%2Cformat=auto/https://assets.v3cars.com/media/model-imgs/745023vinfast-vf-mpv-7.webp"
+                  alt="VinFast VF 3"
+                  onerror="
+                    this.onerror = null;
+                    this.src =
+                      'https://stimg.cardekho.com/images/carexteriorimages/930x620/VinFast/VF3/12338/1770192071600/front-left-side-47.jpg';
+                  "
+                />
+              </div>
+              <div class="lineup-copy">
+                <div class="lineup-number">06</div>
+                <h3>VF 3</h3>
+                <p>COMPACT.<br />PLAYFUL.<br />CITY ELECTRIC.</p>
               </div>
             </article>
           </div>
@@ -7523,8 +7913,56 @@
       document
         .querySelectorAll(".reveal")
         .forEach((el) => observer.observe(el));
+
+      /* Scroll-direction car animation */
+      const scrollCar = document.getElementById("scrollCarAnimation");
+      let lastScrollY = window.scrollY;
+      let scrollCarTimer = null;
+
+      window.addEventListener(
+        "scroll",
+        () => {
+          const currentScrollY = window.scrollY;
+          const scrollingDown = currentScrollY > lastScrollY + 2;
+          lastScrollY = currentScrollY;
+
+          if (scrollingDown && scrollCar) {
+            scrollCar.classList.remove("is-driving");
+            void scrollCar.offsetWidth;
+            scrollCar.classList.add("is-driving");
+
+            clearTimeout(scrollCarTimer);
+            scrollCarTimer = setTimeout(() => {
+              scrollCar.classList.remove("is-driving");
+            }, 1400);
+          }
+        },
+        { passive: true },
+      );
     </script>
+
+    <!-- Small scroll car: drives left -> right on downward scrolling -->
+    <div
+      class="scroll-car-animation"
+      id="scrollCarAnimation"
+      aria-hidden="true"
+    >
+      <svg
+        class="scroll-car-svg"
+        viewBox="0 0 124 68"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect x="12" y="30" width="100" height="23" rx="8" fill="#f28a18" />
+        <path d="M31 30 L43 13 H78 L95 30 Z" fill="#111317" />
+        <path d="M45 16 H60 V28 H36 Z" fill="#e9f2f6" />
+        <path d="M63 16 H76 L88 28 H63 Z" fill="#e9f2f6" />
+        <rect x="19" y="35" width="12" height="5" rx="2" fill="#fff" />
+        <rect x="94" y="35" width="10" height="5" rx="2" fill="#fff" />
+        <circle cx="35" cy="53" r="11" fill="#111317" />
+        <circle cx="35" cy="53" r="5" fill="#fff" />
+        <circle cx="91" cy="53" r="11" fill="#111317" />
+        <circle cx="91" cy="53" r="5" fill="#fff" />
+      </svg>
+    </div>
   </body>
 </html>
-
-  
