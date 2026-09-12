@@ -5109,3 +5109,245 @@ body{
   requestUpdate();
 })();
 </script>
+
+
+<!-- =========================================================
+     END OF PAGE CELEBRATION — triggers when the scroll car
+     reaches/crosses the right edge at the very end of the page
+     ========================================================= -->
+<style id="end-of-page-celebration">
+  .end-celebration{
+    position:fixed;
+    inset:0;
+    z-index:10000;
+    display:grid;
+    place-items:center;
+    pointer-events:none;
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .35s ease, visibility .35s ease;
+  }
+
+  .end-celebration.show{
+    opacity:1;
+    visibility:visible;
+  }
+
+  .end-celebration-backdrop{
+    position:absolute;
+    inset:0;
+    background:rgba(7,12,16,.22);
+    backdrop-filter:blur(2px);
+  }
+
+  .end-celebration-card{
+    position:relative;
+    z-index:2;
+    width:min(460px,calc(100% - 36px));
+    padding:34px 34px 30px;
+    text-align:center;
+    background:#fff;
+    border:1px solid #e1e5e8;
+    box-shadow:0 25px 80px rgba(0,0,0,.22);
+    transform:translateY(18px) scale(.94);
+    transition:transform .45s cubic-bezier(.22,.61,.36,1);
+  }
+
+  .end-celebration.show .end-celebration-card{
+    transform:translateY(0) scale(1);
+  }
+
+  .end-celebration-icon{
+    width:58px;
+    height:58px;
+    margin:0 auto 15px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:#f47b00;
+    color:#fff;
+    font-size:29px;
+    box-shadow:0 10px 28px rgba(244,123,0,.28);
+    animation:endPop .7s cubic-bezier(.175,.885,.32,1.275);
+  }
+
+  .end-celebration-card h2{
+    margin:0;
+    color:#111518;
+    font:900 clamp(42px,7vw,66px)/.88 "Barlow Condensed",sans-serif;
+    letter-spacing:-1px;
+    text-transform:uppercase;
+  }
+
+  .end-celebration-card h2 span{
+    color:#f47b00;
+  }
+
+  .end-celebration-card p{
+    margin:14px auto 0;
+    max-width:350px;
+    color:#68727a;
+    font:600 12px/1.7 "Inter",sans-serif;
+    letter-spacing:.15px;
+  }
+
+  .end-celebration-line{
+    width:54px;
+    height:3px;
+    margin:19px auto 0;
+    background:#f47b00;
+  }
+
+  .end-confetti{
+    position:absolute;
+    left:50%;
+    top:50%;
+    z-index:3;
+    width:8px;
+    height:14px;
+    border-radius:2px;
+    opacity:0;
+    transform:translate(-50%,-50%);
+  }
+
+  .end-celebration.show .end-confetti{
+    animation:confettiBurst 1.35s cubic-bezier(.16,.72,.28,1) forwards;
+  }
+
+  .end-confetti:nth-child(1){--x:-210px;--y:-155px;--r:210deg;background:#f47b00}
+  .end-confetti:nth-child(2){--x:-150px;--y:-210px;--r:145deg;background:#111518}
+  .end-confetti:nth-child(3){--x:-70px;--y:-175px;--r:320deg;background:#e21a22}
+  .end-confetti:nth-child(4){--x:35px;--y:-215px;--r:70deg;background:#f47b00}
+  .end-confetti:nth-child(5){--x:120px;--y:-185px;--r:250deg;background:#111518}
+  .end-confetti:nth-child(6){--x:195px;--y:-135px;--r:125deg;background:#e21a22}
+  .end-confetti:nth-child(7){--x:-235px;--y:-45px;--r:285deg;background:#111518}
+  .end-confetti:nth-child(8){--x:235px;--y:-55px;--r:35deg;background:#f47b00}
+  .end-confetti:nth-child(9){--x:-190px;--y:65px;--r:160deg;background:#e21a22}
+  .end-confetti:nth-child(10){--x:185px;--y:75px;--r:300deg;background:#111518}
+  .end-confetti:nth-child(11){--x:-120px;--y:145px;--r:55deg;background:#f47b00}
+  .end-confetti:nth-child(12){--x:110px;--y:150px;--r:210deg;background:#e21a22}
+
+  @keyframes confettiBurst{
+    0%{
+      opacity:1;
+      transform:translate(-50%,-50%) translate(0,0) rotate(0);
+    }
+    100%{
+      opacity:0;
+      transform:translate(-50%,-50%) translate(var(--x),var(--y)) rotate(var(--r));
+    }
+  }
+
+  @keyframes endPop{
+    0%{transform:scale(.45) rotate(-12deg)}
+    65%{transform:scale(1.12) rotate(4deg)}
+    100%{transform:scale(1) rotate(0)}
+  }
+
+  @media(max-width:600px){
+    .end-celebration-card{
+      padding:28px 22px 25px;
+    }
+    .end-celebration-card h2{
+      font-size:48px;
+    }
+    .end-confetti:nth-child(1){--x:-120px;--y:-120px}
+    .end-confetti:nth-child(2){--x:-85px;--y:-155px}
+    .end-confetti:nth-child(3){--x:-40px;--y:-135px}
+    .end-confetti:nth-child(4){--x:45px;--y:-155px}
+    .end-confetti:nth-child(5){--x:90px;--y:-125px}
+    .end-confetti:nth-child(6){--x:125px;--y:-90px}
+    .end-confetti:nth-child(7){--x:-130px;--y:-35px}
+    .end-confetti:nth-child(8){--x:130px;--y:-35px}
+    .end-confetti:nth-child(9){--x:-105px;--y:65px}
+    .end-confetti:nth-child(10){--x:105px;--y:65px}
+    .end-confetti:nth-child(11){--x:-65px;--y:115px}
+    .end-confetti:nth-child(12){--x:65px;--y:115px}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    .end-celebration,
+    .end-celebration-card,
+    .end-celebration-icon,
+    .end-celebration.show .end-confetti{
+      animation:none!important;
+      transition:none!important;
+    }
+  }
+</style>
+
+<div class="end-celebration" id="endCelebration" aria-hidden="true">
+  <div class="end-celebration-backdrop"></div>
+
+  <span class="end-confetti"></span>
+  <span class="end-confetti"></span>
+  <span class="end-confetti"></span>
+  <span class="end-confetti"></span>
+  <span class="end-confetti"></span>
+  <span class="end-confetti"></span>
+  <span class="end-confetti"></span>
+  <span class="end-confetti"></span>
+  <span class="end-confetti"></span>
+  <span class="end-confetti"></span>
+  <span class="end-confetti"></span>
+  <span class="end-confetti"></span>
+
+  <div class="end-celebration-card" role="status" aria-live="polite">
+    <div class="end-celebration-icon">✓</div>
+    <h2>You Have<br>Reached <span>The End</span></h2>
+    <p>Thanks for taking the full ride through UNICO MOTORS.</p>
+    <div class="end-celebration-line"></div>
+  </div>
+</div>
+
+<script id="end-of-page-celebration-js">
+(function(){
+  const car = document.getElementById("scrollRoadCar");
+  const celebration = document.getElementById("endCelebration");
+  if(!car || !celebration) return;
+
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let endShown = false;
+
+  function checkPageEnd(){
+    const scrollTop = window.scrollY || window.pageYOffset || 0;
+    const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const progress = Math.max(0, Math.min(1, scrollTop / maxScroll));
+
+    // Show only when the scroll car has reached the final ~1.5% of the page.
+    if(progress >= 0.985 && !endShown){
+      endShown = true;
+      celebration.classList.add("show");
+      celebration.setAttribute("aria-hidden","false");
+
+      // Keep the celebration visible briefly, then fade it out.
+      window.clearTimeout(celebration._hideTimer);
+      celebration._hideTimer = window.setTimeout(function(){
+        celebration.classList.remove("show");
+        celebration.setAttribute("aria-hidden","true");
+      }, 3600);
+    }
+
+    // Reset after moving away from the bottom so it can celebrate again.
+    if(progress < 0.94 && endShown){
+      endShown = false;
+      celebration.classList.remove("show");
+      celebration.setAttribute("aria-hidden","true");
+    }
+  }
+
+  if(reduced){
+    // Still show the end message, but without the animated burst.
+    window.addEventListener("scroll", checkPageEnd, {passive:true});
+    window.addEventListener("resize", checkPageEnd);
+    window.addEventListener("load", checkPageEnd);
+    checkPageEnd();
+    return;
+  }
+
+  window.addEventListener("scroll", checkPageEnd, {passive:true});
+  window.addEventListener("resize", checkPageEnd);
+  window.addEventListener("load", checkPageEnd);
+  checkPageEnd();
+})();
+</script>
