@@ -3514,7 +3514,7 @@ body{
      CONTACT
 ======================================================= -->
 
-    <section class="section contact-section">
+    <section class="section contact-section" id="appointment-form">
       <div class="container contact-inner">
         <div>
           <div class="kicker">Let's Talk</div>
@@ -5198,6 +5198,67 @@ body{
     background:#f47b00;
   }
 
+  /* End popup — booking CTA */
+  .end-thanks{
+    font-family:"Brush Script MT","Segoe Script","Lucida Handwriting",cursive !important;
+    font-size:19px !important;
+    font-weight:500 !important;
+    line-height:1.45 !important;
+    color:#4d555b !important;
+  }
+
+  .end-book-btn{
+    pointer-events:auto !important;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    width:100%;
+    min-height:52px;
+    margin-top:22px;
+    padding:0 18px;
+    background:#f47b00;
+    border:1px solid #f47b00;
+    color:#fff;
+    font:800 10px/1.2 "Inter",sans-serif;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    text-decoration:none;
+    transition:all .25s ease;
+    box-shadow:0 10px 24px rgba(244,123,0,.20);
+  }
+
+  .end-book-btn span{
+    font-size:20px;
+    line-height:1;
+    transition:transform .25s ease;
+  }
+
+  .end-book-btn:hover{
+    background:#111518;
+    border-color:#111518;
+    transform:translateY(-2px);
+    box-shadow:0 14px 30px rgba(17,21,24,.20);
+  }
+
+  .end-book-btn:hover span{
+    transform:translateX(5px);
+  }
+
+  @media(max-width:600px){
+    .end-thanks{
+      font-size:17px !important;
+    }
+
+    .end-book-btn{
+      min-height:50px;
+      padding:0 14px;
+      font-size:9px;
+      letter-spacing:.7px;
+    }
+  }
+
   .end-confetti{
     position:absolute;
     left:50%;
@@ -5295,16 +5356,23 @@ body{
   <div class="end-celebration-card" role="status" aria-live="polite">
     <div class="end-celebration-icon">✓</div>
     <h2>You Have<br>Reached <span>The End</span></h2>
-    <p>Thanks for taking the full ride through UNICO MOTORS.</p>
+    <p class="end-thanks">Thanks for taking the full ride through UNICO MOTORS.</p>
     <div class="end-celebration-line"></div>
+
+    <a href="./contact.html" class="end-book-btn" id="endBookAppointment" role="button" onclick="window.location.href='./contact.html'; return false;">
+      Let’s Schedule a Car Booking Appointment
+      <span>→</span>
+    </a>
   </div>
 </div>
 
 <script id="end-of-page-celebration-js">
+
 (function(){
   const car = document.getElementById("scrollRoadCar");
   const celebration = document.getElementById("endCelebration");
   if(!car || !celebration) return;
+
 
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let endShown = false;
